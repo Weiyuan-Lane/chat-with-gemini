@@ -2,7 +2,7 @@ const {VertexAI} = require('@google-cloud/vertexai');
 
 // Initialize Vertex with your Cloud project and location
 const vertex_ai = new VertexAI({project: 'trygcp-ai-2', location: 'us-central1'});
-const model = 'gemini-1.5-pro-preview-0409';
+const model = 'gemini-1.0-pro-vision-001';
 
 const express = require('express');
 const marked = require('marked');
@@ -30,7 +30,7 @@ app.post('/chat', async (req, res) => {
 const generativeModel = vertex_ai.preview.getGenerativeModel({
   model: model,
   generationConfig: {
-    'maxOutputTokens': 8192,
+    'maxOutputTokens': 2048,
     'temperature': 1,
     'topP': 0.95,
   },
