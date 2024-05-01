@@ -14,7 +14,6 @@ const path = require('path');
 
 // Chat implementation
 app.post('/chat', async (req, res) => {
-  console.log(req.body);
   try {
     const chatResponse = await sendMessage(req.body.message);
     const parsedResponse = marked.parse(chatResponse);
@@ -38,19 +37,19 @@ const generativeModel = vertex_ai.preview.getGenerativeModel({
   safetySettings: [
     {
         'category': 'HARM_CATEGORY_HATE_SPEECH',
-        'threshold': 'BLOCK_MEDIUM_AND_ABOVE'
+        'threshold': 'BLOCK_NONE'
     },
     {
         'category': 'HARM_CATEGORY_DANGEROUS_CONTENT',
-        'threshold': 'BLOCK_MEDIUM_AND_ABOVE'
+        'threshold': 'BLOCK_NONE'
     },
     {
         'category': 'HARM_CATEGORY_SEXUALLY_EXPLICIT',
-        'threshold': 'BLOCK_MEDIUM_AND_ABOVE'
+        'threshold': 'BLOCK_NONE'
     },
     {
         'category': 'HARM_CATEGORY_HARASSMENT',
-        'threshold': 'BLOCK_MEDIUM_AND_ABOVE'
+        'threshold': 'BLOCK_NONE'
     }
   ],
 });
@@ -59,7 +58,8 @@ const chat = generativeModel.startChat({});
 
 async function sendMessage(message) {
   const result = await chat.sendMessageStream([
-    {text: message}
+    // { text: 'Talk like Ryan Reynolds' },
+    { text: message }
   ]);
   let output = '';
   for await (const item of result.stream) {
