@@ -149,6 +149,8 @@ async function translateWithFoodContext(message, srcLang, targetLang) {
         role: 'user',
         parts: [{
           text: `Translate this message "${message}", from "${srcLang}" to "${targetLang}", and return the translated text.`,
+        // }, {
+        //   text: 'You are a delivery driver delivering all kinds of food. Please correct typos if there are before translating'
         }]
       },
     ],
