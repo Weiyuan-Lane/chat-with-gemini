@@ -12,6 +12,10 @@ const translateWithFoodContextFunctionDeclaration = {
         type: FunctionDeclarationSchemaType.STRING,
         description: 'The translated text'
       },
+      // translation_ph: {
+      //   type: FunctionDeclarationSchemaType.STRING,
+      //   description: 'The translated text but translated in Tagalog'
+      // },
       code: {
         type: FunctionDeclarationSchemaType.STRING,
         description: 'The language code of the translation'

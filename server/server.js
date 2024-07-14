@@ -6,7 +6,7 @@ const {
 
 // Initialize Vertex with your Cloud project and location
 const vertex_ai = new VertexAI({project: 'trygcp-ai-new', location: 'us-central1'});
-const proModel = 'gemini-1.0-pro-vision-001';
+// const proModel = 'gemini-1.0-pro-vision-001';
 const flashModel = 'gemini-1.5-flash-001';
 
 const express = require('express');
@@ -72,7 +72,7 @@ app.post('/translate-for-food', async (req, res) => {
 
 // Instantiate the models
 const generativeModel = vertex_ai.preview.getGenerativeModel({
-  model: proModel,
+  model: flashModel,
   generationConfig: {
     'maxOutputTokens': 2048,
     'temperature': 1,
@@ -117,7 +117,7 @@ async function sendMessageStream(message) {
 // See a sample here: https://github.com/GoogleCloudPlatform/nodejs-docs-samples/blob/main/generative-ai/snippets/function-calling/functionCallingBasic.js
 async function translateWithFoodContext(message, srcLang, targetLang) {
   const generativeModelWithFunctionCalling = vertex_ai.preview.getGenerativeModel({
-    model: 'gemini-1.0-pro',
+    model: flashModel,
     generationConfig: {
       'maxOutputTokens': 2048,
       'temperature': 1,
